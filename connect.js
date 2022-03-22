@@ -6,7 +6,6 @@ const httpsAgent = new https.Agent({
 });
 
 const serverURL = 'https://api.fs.londschien.com:3000';
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 export const nfcRead = id => fetch(serverURL + "/api", {
     headers: {
@@ -16,7 +15,7 @@ export const nfcRead = id => fetch(serverURL + "/api", {
     method: "POST",
     body: JSON.stringify({
         type: "nfcRead",
-        id,
+        data: id,
     }),
     agent: httpsAgent,
 })

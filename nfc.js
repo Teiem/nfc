@@ -1,13 +1,11 @@
 import { nfcRead } from './connect.js';
 import { NFC } from 'nfc-pcsc';
 
-console.log("start");
 const nfc = new NFC(); // optionally you can pass logger
-console.log("start2");
 
 nfc.on('reader', reader => {
 
-	console.log(`${reader.reader.name}  device attached`);
+	console.log(`${reader.reader.name}  device attached\n`);
 
 	// enable when you want to auto-process ISO 14443-4 tags (standard=TAG_ISO_14443_4)
 	// when an ISO 14443-4 is detected, SELECT FILE command with the AID is issued
@@ -23,25 +21,25 @@ nfc.on('reader', reader => {
 		// [only TAG_ISO_14443_3] String uid: tag uid
 		// [only TAG_ISO_14443_4] Buffer data: raw data from select APDU response
 
-		console.log(`${reader.reader.name}  card detected`, card);
+		console.log(`${reader.reader.name}  card detected`, card, "\n");
         nfcRead(card.uid);
 
 	});
 
 	reader.on('card.off', card => {
-		console.log(`${reader.reader.name}  card removed`, card);
+		console.log(`${reader.reader.name}  card removed`, card, "\n");
 	});
 
 	reader.on('error', err => {
-		console.log(`${reader.reader.name}  an error occurred`, err);
+		console.log(`${reader.reader.name}  an error occurred`, err, "\n");
 	});
 
 	reader.on('end', () => {
-		console.log(`${reader.reader.name}  device removed`);
+		console.log(`${reader.reader.name}  device removed`, "\n");
 	});
 
 });
 
 nfc.on('error', err => {
-    console.log('an error occurred', err);
+    console.warn('an error occurred', err, "\n");
 });
