@@ -1,0 +1,17 @@
+{
+  "name": "nfc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node nfc.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nfc-pcsc": "^0.8.1",
+    "node-fetch": "^3.2.3"
+  }
+}
